@@ -4,11 +4,10 @@
 #include "TRandom3.h"
 #include "TH1D.h"
 
-const int Nchannels = 2048;
-const double min_edge = 0., max_edge = 2048.;
+#include "generator.h"
 
-TH1D* generator(int B=2){
-	TRandom3 *rg = new TRandom3();
+TH1D* generator(int B){
+	TRandom3 *rg = new TRandom3();//static_cast<int>(std::time(0)));
 	float channel;
 	// Bin 0 - overflow; Bin Nchannels+1 - overflow; Bins 1 and Nchannels are bounds
 	TH1D* baseline_hist = new TH1D("Base", "Baseline", Nchannels, min_edge, max_edge);
