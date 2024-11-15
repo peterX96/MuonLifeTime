@@ -16,5 +16,5 @@ target_link_libraries(generator ROOT::RIO ROOT::Net ROOT::Hist ROOT::Gpad ROOT::
 #main line where we say tat we need an exe file which to be created from .C
 add_executable(main.exe montecarlosim.C)
 
-target_link_libraries(main.exe generator )#ROOT::RIO ROOT::Net ROOT::Hist ROOT::Gpad ROOT::Tree)
+target_link_libraries(main.exe generator ROOT::RIO)#ROOT::RIO ROOT::Net ROOT::Hist ROOT::Gpad ROOT::Tree)
 

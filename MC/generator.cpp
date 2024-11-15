@@ -1,13 +1,15 @@
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 #include "TRandom3.h"
 #include "TH1D.h"
 
 #include "generator.h"
+#include "constants.h"
 
-TH1D* generator(int B){
-	TRandom3 *rg = new TRandom3();//static_cast<int>(std::time(0)));
+TH1D* generator(int B, int seed){
+	TRandom3 *rg = new TRandom3(seed);//static_cast<int>(std::time(0)));
 	float channel;
 	// Bin 0 - overflow; Bin Nchannels+1 - overflow; Bins 1 and Nchannels are bounds
 	TH1D* baseline_hist = new TH1D("Base", "Baseline", Nchannels, min_edge, max_edge);
