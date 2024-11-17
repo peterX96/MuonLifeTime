@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <TTree.h>
 
 #include "TRandom3.h"
 #include "TH1D.h"
@@ -20,63 +19,51 @@ int main(int argc, char** argv){
 	
 	TH1D* fit_hist = new TH1D("FitHist", ("Baseline " + std::to_string(B) + " estimation from part of the hist").c_str(), 50, min_bin, max_bin);
 	TH1D* fit_err_hist = new TH1D("FitErrors", ("Fit errors for B = " + std::to_string(B)).c_str(), 50, 0.02, 0.07);
-//	TH1D* avg_hist = new TH1D("AvgHist", ("Baseline " + std::to_string(B) + " average of part of the hist").c_str(), 50, min_bin, max_bin);
+	TH1D* avg_hist = new TH1D("AvgHist", ("Baseline " + std::to_string(B) + " average of part of the hist").c_str(), 50, min_bin, max_bin);
 	
 	TF1 *fit0 = new TF1("pol0_left", "pol0", min_edge, min_edge+fit_width);
 	TF1 *fit1 = new TF1("pol0_right", "pol0", (min_edge+max_edge)/2, (min_edge+max_edge)/2 + fit_width);
-
-	// Storing data
 	
-	TFile *file = new TFile("PartialFit.root", "UPDATE"); 
-
-	TString treeName = Form("Data_%d",int(fit_width)); 
-
-        TTree *tree = new TTree(treeName, treeName); 
-
-        double a1,a2,a3,a4;
-
-        tree->Branch("fit_bin", &a1);
-	tree->Branch("fit_err", &a2);
-	tree->Branch("avg_bin", &a3);
-	tree->Branch("dev", &a4);  //deviation (MEANfit_bin-mu)/SIGMAfit_bin
-
 	for (Int_t i = 0; i < N; i++) {
-
-		std::cout << "LOADING : " << i << " / " << N << std::endl;
-
 		base_hist = generator(B, i);
+		std::cout << "LOADING : " << i << " / " << N << std::endl;
 		base_hist->Fit(fit0, "LR");
 		base_hist->Fit(fit1, "LR");
 		
 		fit0->GetParameters(&fit_bin);
-		a1 = fit_bin;
+		fit_hist->Fill(fit_bin);
 		fit_err = fit0->GetParError(0);
-		a2 = fit_err;
-		
-		a4 = (a1-B)/a2;
-
-		avg_bin = base_hist->Integral(min_edge, min_edge+fit_width)/fit_width;
-		a3 = avg_bin;
-
-		tree->Fill();		
+		fit_err_hist->Fill(fit_err);
 		
 		fit1->GetParameters(&fit_bin);
-		a1 = fit_bin;
+		fit_hist->Fill(fit_bin);
 		fit_err = fit1->GetParError(0);
-		a2 = fit_err;
+		fit_err_hist->Fill(fit_err);
 		
-		a4 = (a1-B)/a2;
+		avg_bin = base_hist->Integral(min_edge, min_edge+fit_width)/fit_width;
+		avg_hist->Fill(avg_bin);
 		
 		avg_bin = base_hist->Integral((min_edge+max_edge)/2, (min_edge+max_edge)/2 + fit_width)/fit_width;
-		a3 = avg_bin;
-
-		tree->Fill();
+		avg_hist->Fill(avg_bin);
+		
 	}
-
-    file->Write();
-    file->Close();
-
-
+	
+	TCanvas *canvas = new TCanvas("canvas", "Histogram and Fit", 1000, 1000);
+	canvas->cd();
+	fit_hist->SetLineColor(kRed);
+	fit_hist->Draw("same");
+	avg_hist->SetLineColor(kBlack);
+	avg_hist->Draw("same");
+	canvas->Update();
+	canvas->SaveAs(("example_"+std::to_string(fit_width)+".png").c_str());
+	
+	TFile* res_file = new TFile(("baseline_"+std::to_string(fit_width)+".root").c_str(), "RECREATE");
+	res_file->cd();
+	fit_hist->Write();
+	fit_err_hist->Write();
+	avg_hist->Write();
+	res_file->Close();
+	return 0;
 }
 
 

@@ -1,4 +1,4 @@
-/home/peter/Desktop/UNIPD/MuLifetime/MC/CMakeFiles/rebuild_cache.dir
-/home/peter/Desktop/UNIPD/MuLifetime/MC/CMakeFiles/main.exe.dir
-/home/peter/Desktop/UNIPD/MuLifetime/MC/CMakeFiles/edit_cache.dir
-/home/peter/Desktop/UNIPD/MuLifetime/MC/CMakeFiles/generator.dir
+/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/CMakeFiles/generator.dir
+/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/CMakeFiles/main.exe.dir
+/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/CMakeFiles/rebuild_cache.dir
