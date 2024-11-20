@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main.exe.dir/montecarlosim.C.o"
+  "CMakeFiles/main.exe.dir/montecarlosim.C.o.d"
   "main.exe"
   "main.exe.pdb"
 )
