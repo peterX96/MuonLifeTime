@@ -12,63 +12,59 @@
 #include "constants.h"
 
 int main(int argc, char** argv){
-	Int_t N=1000; // Iteration
-	Int_t B=2; // Baseline
-	double fit_bin, fit_err, avg_bin;
-	TH1D* base_hist; // Array of histograms
-	double min_bin=B*0.9, max_bin=B*1.1, fit_width = std::stof(argv[1]);
+// variable exponential
+	Int_t Nevents = 11300;
+	Double_t tauplus = 2.2;
+	Int_t N = 2000; // Iteration	
+	TH1D* exp_hist; // Array of histograms
 	
-	TH1D* fit_hist = new TH1D("FitHist", ("Baseline " + std::to_string(B) + " estimation from part of the hist").c_str(), 50, min_bin, max_bin);
-	TH1D* fit_err_hist = new TH1D("FitErrors", ("Fit errors for B = " + std::to_string(B)).c_str(), 50, 0.02, 0.07);
-//	TH1D* avg_hist = new TH1D("AvgHist", ("Baseline " + std::to_string(B) + " average of part of the hist").c_str(), 50, min_bin, max_bin);
+	TH1D* fit_bin = new TH1D("MeanDistr", "", 1000, 2, 2.4);
+	TH1D* fit_err = new TH1D("SigmaDistr","" , 1000, 0, 1);
+	TH1D* dev = new TH1D("Pull", "", 1000, -5, 5);
 	
-	TF1 *fit0 = new TF1("pol0_left", "pol0", min_edge, min_edge+fit_width);
-	TF1 *fit1 = new TF1("pol0_right", "pol0", (min_edge+max_edge)/2, (min_edge+max_edge)/2 + fit_width);
+	TF1 *fit0 = new TF1("f1", "expo", min_edge, max_edge);
+
+	fit0->SetParameter(0, 30); 
+        fit0->SetParameter(1, 3); 
 
 	// Storing data
 	
-	TFile *file = new TFile("PartialFit.root", "UPDATE"); 
+	TFile *file = new TFile("ExponentialFit.root", "UPDATE"); 
 
-	TString treeName = Form("Data_%d",int(fit_width)); 
+	TString treeName = Form("Data"); 
 
         TTree *tree = new TTree(treeName, treeName); 
 
-        double a1,a2,a3,a4;
+        double a1,a2,a3,a4,a5,a6;
 
-        tree->Branch("fit_bin", &a1);
-	tree->Branch("fit_err", &a2);
-	tree->Branch("avg_bin", &a3);
-	tree->Branch("dev", &a4);  //deviation (MEANfit_bin-mu)/SIGMAfit_bin
+        tree->Branch("fit_bin_tau", &a1);
+	tree->Branch("fit_err_tau", &a2);
+	tree->Branch("dev_tau", &a3);  
+	tree->Branch("fit_bin_Amp", &a4);
+	tree->Branch("fit_err_Amp", &a5);
+	tree->Branch("dev_Amp", &a6);  
 
 	for (Int_t i = 0; i < N; i++) {
 
 		std::cout << "LOADING : " << i << " / " << N << std::endl;
 
-		base_hist = generator(B, i);
-		base_hist->Fit(fit0, "LR");
-		base_hist->Fit(fit1, "LR");
+		exp_hist = generator_exp (tauplus,Nevents,i);
+		exp_hist->Fit(fit0,"LR");
 		
-		fit0->GetParameters(&fit_bin);
-		a1 = fit_bin;
-		fit_err = fit0->GetParError(0);
-		a2 = fit_err;
-		
-		a4 = (a1-B)/a2;
+		a1 = fit0->GetParameter(1);
+		a2 = fit0->GetParError(1);
+		a2 = a2/(a1*a1);
+		a2 = a2*0.01182;                   //propagation
+		a1 = (-1/a1)*0.01182+0.02727;   // from ch to time
 
-		avg_bin = base_hist->Integral(min_edge, min_edge+fit_width)/fit_width;
-		a3 = avg_bin;
+		a3 = (a1-tauplus)/a2;
 
-		tree->Fill();		
-		
-		fit1->GetParameters(&fit_bin);
-		a1 = fit_bin;
-		fit_err = fit1->GetParError(0);
-		a2 = fit_err;
-		
-		a4 = (a1-B)/a2;
-		
-		avg_bin = base_hist->Integral((min_edge+max_edge)/2, (min_edge+max_edge)/2 + fit_width)/fit_width;
-		a3 = avg_bin;
+
+		a4 = fit0->GetParameter(0);
+		a5 = fit0->GetParError(0);
+		a5 = exp(a4)*a5;
+		a4 = exp(a4);
+		//a6 = (a4-)/a6;
 
 		tree->Fill();
 	}
