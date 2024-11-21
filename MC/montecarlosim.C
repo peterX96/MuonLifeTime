@@ -1,68 +1,77 @@
 #include <iostream>
 #include <cmath>
+#include <TTree.h>
 
 #include "TRandom3.h"
 #include "TH1D.h"
+#include "TCanvas.h"
+#include "TF1.h"
+#include "TFile.h"
 
-const int Nchannels = 2048;
-const double min_edge = 0., max_edge = 2048.;
+#include "generator.h"
+#include "constants.h"
 
-TH1D* generator(int B=2){
-	TRandom3 *rg = new TRandom3(static_cast<int>(time(0))); // I MADE ONLY THIS CHANGE
-	float channel;
-	// Bin 0 - overflow; Bin Nchannels+1 - overflow; Bins 1 and Nchannels are bounds
-	TH1D* baseline_hist = new TH1D("Base", "Baseline", Nchannels, min_edge, max_edge);
+int main(int argc, char** argv){
+// variable exponential
+	Int_t Nevents = 11300;
+	Double_t tauplus = 2.2;
+	Int_t N = 2000; // Iteration	
+	TH1D* exp_hist; // Array of histograms
 	
-	for (int i = 0; i < B*Nchannels; i ++){
-		channel = (int)std::floor((rg->Uniform(min_edge, max_edge)))+0.5;
-		baseline_hist->Fill(channel);
+	TH1D* fit_bin = new TH1D("MeanDistr", "", 1000, 2, 2.4);
+	TH1D* fit_err = new TH1D("SigmaDistr","" , 1000, 0, 1);
+	TH1D* dev = new TH1D("Pull", "", 1000, -5, 5);
+	
+	TF1 *fit0 = new TF1("f1", "expo", min_edge, max_edge);
+
+	fit0->SetParameter(0, 30); 
+        fit0->SetParameter(1, 3); 
+
+	// Storing data
+	
+	TFile *file = new TFile("ExponentialFit.root", "UPDATE"); 
+
+	TString treeName = Form("Data"); 
+
+        TTree *tree = new TTree(treeName, treeName); 
+
+        double a1,a2,a3,a4,a5,a6;
+
+        tree->Branch("fit_bin_tau", &a1);
+	tree->Branch("fit_err_tau", &a2);
+	tree->Branch("dev_tau", &a3);  
+	tree->Branch("fit_bin_Amp", &a4);
+	tree->Branch("fit_err_Amp", &a5);
+	tree->Branch("dev_Amp", &a6);  
+
+	for (Int_t i = 0; i < N; i++) {
+
+		std::cout << "LOADING : " << i << " / " << N << std::endl;
+
+		exp_hist = generator_exp (tauplus,Nevents,i);
+		exp_hist->Fit(fit0,"LR");
+		
+		a1 = fit0->GetParameter(1);
+		a2 = fit0->GetParError(1);
+		a2 = a2/(a1*a1);
+		a2 = a2*0.01182;                   //propagation
+		a1 = (-1/a1)*0.01182+0.02727;   // from ch to time
+
+		a3 = (a1-tauplus)/a2;
+
+
+		a4 = fit0->GetParameter(0);
+		a5 = fit0->GetParError(0);
+		a5 = exp(a4)*a5;
+		a4 = exp(a4);
+		//a6 = (a4-)/a6;
+
+		tree->Fill();
 	}
-	
-	baseline_hist->Draw();
-	std::cout << baseline_hist->GetBinContent(0) << ' ' << baseline_hist->GetBinContent(1) << ' ' 
-		<< baseline_hist->GetBinContent(Nchannels) << ' ' << baseline_hist->GetBinContent(Nchannels+1) << std::endl;
-	return baseline_hist;
-}
 
+    file->Write();
+    file->Close();
 
-void montecarlosim(){
-
-TH1D* baseline_sum = new TH1D("Base", "Baseline average", 2048,0.,2048.);
-
-Int_t N=500; // Iteration
-Int_t B=2; // Baseline
-float scale = 1.0f / N; // Normalization term
-
-TH1D* histograms[N]; // Array of histograms
-
-for (Int_t i = 0; i < N+1; i++) {
-
-histograms[i] = generator();
-
-baseline_sum->Add(histograms[i]);
-
-cout << "LOADING : " << i << " / " << N << endl;
-}
-
-TH1F* result = (TH1F*)baseline_sum->Clone("result");
-
-result ->Scale(scale);
-
-TCanvas *canvas = new TCanvas("canvas", "Histogram and Fit", 800, 600);
-
-result->Draw("HIST");
-
-// fit with pol0 & pol1
-
-	// Fit a linear (pol1) to the histogram
-        TF1 *fit_pol0 = new TF1("fit_pol0", "pol0", 0, 2048);
-        result->Fit(fit_pol0, "R");  
-
-        // Fit a linear (pol1) to the histogram
-        TF1 *fit_pol1 = new TF1("fit_pol1", "pol1", 0, 2048);
-        result->Fit(fit_pol1, "R");
-	
-canvas->Update();
 
 }
 
