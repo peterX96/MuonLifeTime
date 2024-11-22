@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/include -isystem /home/antonio/root/root-6.32.02-install/include
+CXX_INCLUDES = -I/mnt/c/Users/Antonio/Desktop/MuonLifeTime-main/MC/include -isystem /home/antonio/root/root-6.32.02-install/include
 
 CXX_FLAGS = 
 

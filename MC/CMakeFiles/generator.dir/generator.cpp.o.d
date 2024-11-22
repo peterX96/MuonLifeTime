@@ -1,5 +1,5 @@
 CMakeFiles/generator.dir/generator.cpp.o: \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/generator.cpp \
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-main/MC/generator.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -261,5 +261,5 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /home/antonio/root/root-6.32.02-install/include/TFitResultPtr.h \
  /usr/include/c++/11/cfloat \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/generator.h \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/constants.h
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-main/MC/generator.h \
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-main/MC/constants.h

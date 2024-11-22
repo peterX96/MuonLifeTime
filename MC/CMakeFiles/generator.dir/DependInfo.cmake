@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/Antonio/Desktop/Mulifetime/MC/generator.cpp" "CMakeFiles/generator.dir/generator.cpp.o" "gcc" "CMakeFiles/generator.dir/generator.cpp.o.d"
+  "/mnt/c/Users/Antonio/Desktop/MuonLifeTime-main/MC/generator.cpp" "CMakeFiles/generator.dir/generator.cpp.o" "gcc" "CMakeFiles/generator.dir/generator.cpp.o.d"
   )
 
 # Targets to which this target links.
