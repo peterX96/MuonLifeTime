@@ -13,11 +13,12 @@
 
 int main(int argc, char** argv){
 // variable exponential
-	Int_t Nevents = 11300;
+
+	Int_t Nevents = 11300; // week
 	Double_t tauplus = 2.2;
 	
 	double a1,a2,a3,a4,a5,a6;
-	double b1,b2,b3,b4;
+	//double b1,b2,b3,b4;
 
 	Int_t N = 500; // Iteration	
 	TH1D* exp_hist; // Array of histograms
@@ -27,21 +28,34 @@ int main(int argc, char** argv){
 	TH1D* dev = new TH1D("Pull", "", 1000, -5, 5);
 	
 	TF1 *fit0 = new TF1("f1", "expo", min_edge, max_edge);
-	TF1 *fit_custom = new TF1("f_custom", "[0]*exp(-x/[1])", min_edge, max_edge);
+	//TF1 *fit_custom = new TF1("f_custom", "[0]*exp(-x/[1])", min_edge, max_edge);
 	
 
 	fit0->SetParameter(0, 30); 
-    fit0->SetParameter(1, 3); 
+        fit0->SetParameter(1, 3); 
 
+	/*
 	fit_custom->SetParameter(0, 30);
 	fit_custom->SetParameter(1, 1);
-
+	*/
+	
 	// Storing data
 	
-	TFile *file = new TFile("ExponentialFit.root", "UPDATE"); 
+	//TFile *file = new TFile("ExponentialFitWeek.root", "UPDATE"); 
+	
+	TFile *file = new TFile("ExponentialFitRange.root", "UPDATE"); 
+
 	double tau_ch = (tauplus-cal_par0)/cal_par1;
+
+	// begin loop
+
+	//for (int j = 1; j < 9; j++){
+
+	//TString treeName = Form("Data_week_%d",j);
+	
 	for (int sigmas = 0; sigmas <= 7; sigmas ++){
-		TString treeName = Form(("Data"+std::to_string(sigmas)).c_str());
+
+	TString treeName = Form(("Data"+std::to_string(sigmas)).c_str());
 		
 		TTree *tree = new TTree(treeName, treeName); 
 
@@ -50,9 +64,9 @@ int main(int argc, char** argv){
 		tree->Branch("dev_tau", &a3);  
 		tree->Branch("fit_bin_Amp", &a4);
 		
-		tree->Branch("fit_bin_tau_c", &b1);
+		/*tree->Branch("fit_bin_tau_c", &b1);
 		tree->Branch("fit_err_tau_c", &b2);
-		tree->Branch("dev_tau_c", &b3);
+		tree->Branch("dev_tau_c", &b3);*/
 		
 		tree->Branch("fit_err_Amp", &a5);
 		tree->Branch("dev_Amp", &a6);  
@@ -61,8 +75,14 @@ int main(int argc, char** argv){
 
 			std::cout << "LOADING : " << i << " / " << N << std::endl;
 
+			
 			exp_hist = generator_exp(tauplus,Nevents,i);
 			exp_hist->Fit(fit0, "LR", "", tau_ch*sigmas, max_edge);
+			/*
+			exp_hist = generator_exp(tauplus,Nevents*j,i);
+			exp_hist->Fit(fit0, "LR", "", min_edge, max_edge);
+			*/
+			
 			
 			/*exp_hist->Fit(fit_custom, "LR");
 			b1 = fit_custom->GetParameter(1);
@@ -71,12 +91,12 @@ int main(int argc, char** argv){
 			b1 = b1*cal_par1+cal_par0;   // from ch to time
 			b3 = (b1-tauplus)/b2;*/
 			
+			
 			a1 = fit0->GetParameter(1);
 			a2 = fit0->GetParError(1);
 			a2 = a2/(a1*a1);
 			a2 = a2*cal_par1;                   //propagation
 			a1 = (-1/a1)*cal_par1+cal_par0;   // from ch to time
-
 			a3 = (a1-tauplus)/a2;
 
 
@@ -86,12 +106,19 @@ int main(int argc, char** argv){
 			a4 = exp(a4);
 			//a6 = (a4-)/a6;
 
+				
 			tree->Fill();
+	
+			delete exp_hist; // Warning in TFile::Append: Replacing existing TH1: ... (Potential memory leak).
 		}
-
-		file->Write();
+		
+	//file->Write(); 	
 	}
-    file->Close();
+
+// end loop
+
+	file->Write();
+        file->Close();
 
 
 }

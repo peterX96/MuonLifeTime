@@ -14,7 +14,7 @@ add_library(generator SHARED ${SOURCE_LIB})
 target_link_libraries(generator ROOT::RIO ROOT::Net ROOT::Hist ROOT::Gpad ROOT::Tree)
 
 #main line where we say tat we need an exe file which to be created from .C
-add_executable(main.exe montecarlosim.C)
+add_executable(main.exe montecarlosim_exp_b.C)
 
 target_link_libraries(main.exe generator ROOT::RIO)#ROOT::RIO ROOT::Net ROOT::Hist ROOT::Gpad ROOT::Tree)
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include "constants.h"
 
-TH1D* generator(int B=2, int seed=0);
-TH1D* generator_exp(float tau, int integral, int seed=0);
+TH1D* generator(int B=2, int seed=0, float min_edge_hist=min_edge, float max_edge_hist=max_edge);
+TH1D* generator_exp(float tau, int integral, int seed=0, float min_edge_hist=min_edge, float max_edge_hist=max_edge);
