@@ -1,5 +1,5 @@
 CMakeFiles/main.exe.dir/montecarlosim.C.o: \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/montecarlosim.C \
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/montecarlosim.C \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -342,5 +342,5 @@ CMakeFiles/main.exe.dir/montecarlosim.C.o: \
  /usr/include/c++/11/bits/parse_numbers.h \
  /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/mutex \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/generator.h \
- /mnt/c/Users/Antonio/Desktop/Mulifetime/MC/constants.h
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/generator.h \
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/constants.h

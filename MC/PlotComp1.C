@@ -1,25 +1,18 @@
 
-void PlotComp() {
+void PlotComp1() {
 
-TFile *inputFile = new TFile("ExponentialFit_week_tauminus.root");
+TFile *inputFile = new TFile("ExponentialFitRange.root");
 
 Double_t fit_bin,fit_err,avg_bin,dev,entries;
 
 Double_t mean,sigma,meanerr,out3sig,entriescut;
 
-	int sigmas;
-
-	int sigmau[4] = {0,1,3,5};
 
 cout << "tauminus" << "\t " << "weeks" << "\t " << "mean" << "\t " << "sigma" <<  "\t "<< "meanerr" << "\t "<< "out3sig "<< "\t " << "entries"<< endl;
 
-	for (int k = 0; k < 4; k++){
+	for (int j = 0; j < 8; j++){
 
-	sigmas = sigmau[k];
-
-	for (int j = 1; j < 9; j++){
-
- 	TString treeStartName = Form("Data_week_%d_tauminus_%d",j,sigmas);
+ 	TString treeStartName = Form("Data_week1_tauminus%d",j);
 
 
 TH1F *h1 = new TH1F("h1", "", 1000, 1.7, 2.3);
@@ -35,7 +28,7 @@ TH1F *h3 = new TH1F("h3", "", 10000,0, 7700000);
   tree->SetBranchAddress("fit_bin_tau",&fit_bin);
   tree->SetBranchAddress("fit_err_tau",&fit_err);
   tree->SetBranchAddress("dev_tau",&dev);
-  tree->SetBranchAddress("entries_cut",&entries);
+  //tree->SetBranchAddress("entries_cut",&entries);
 
 
 for (Int_t i = 0; i < tree->GetEntries(); i++) {
@@ -44,7 +37,7 @@ for (Int_t i = 0; i < tree->GetEntries(); i++) {
 
 h1->Fill(fit_bin);
 h2->Fill(fit_err);
-h3->Fill(entries);
+//h3->Fill(entries);
 
 	if (dev >3 || dev < -3){
 	h4->Fill(dev);
@@ -65,9 +58,9 @@ meanerr = h2->GetMean();
 
 out3sig = h4->GetEntries();
 
-entriescut = h3->GetMean();
+//entriescut = h3->GetMean();
 
-cout << sigmas << "\t " << j << "\t " << mean << "\t " << sigma <<  "\t "<< meanerr << "\t "<< out3sig << "\t "<< round(entriescut) << endl;
+cout << j << "\t " << mean << "\t " << sigma <<  "\t "<< meanerr << "\t "<< out3sig  << endl;
 
 
 delete h1;
@@ -76,6 +69,6 @@ delete h3;
 delete h4;
 
 
-}
+
 }
 }

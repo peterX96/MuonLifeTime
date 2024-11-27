@@ -1,5 +1,5 @@
-CMakeFiles/generator.dir/generator.cpp.o: \
- /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/generator.cpp \
+CMakeFiles/main_up.exe.dir/montecarlosim_week.C.o: \
+ /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/montecarlosim_week.C \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -167,13 +167,9 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
- /usr/include/c++/11/tr1/riemann_zeta.tcc /usr/include/c++/11/ctime \
- /home/antonio/root/root-6.32.02-install/include/TRandom3.h \
- /home/antonio/root/root-6.32.02-install/include/TRandom.h \
- /home/antonio/root/root-6.32.02-install/include/Math/TRandomEngine.h \
- /home/antonio/root/root-6.32.02-install/include/TNamed.h \
- /home/antonio/root/root-6.32.02-install/include/TObject.h \
- /home/antonio/root/root-6.32.02-install/include/Rtypes.h \
+ /usr/include/c++/11/tr1/riemann_zeta.tcc \
+ /home/antonio/root/root-6.32.02-install/include/TTree.h \
+ /home/antonio/root/root-6.32.02-install/include/Compression.h \
  /home/antonio/root/root-6.32.02-install/include/RtypesCore.h \
  /home/antonio/root/root-6.32.02-install/include/ROOT/RConfig.hxx \
  /home/antonio/root/root-6.32.02-install/include/RVersion.h \
@@ -181,6 +177,8 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /home/antonio/root/root-6.32.02-install/include/RConfigure.h \
  /home/antonio/root/root-6.32.02-install/include/DllImport.h \
  /usr/include/c++/11/cstddef \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/TIOFeatures.hxx \
+ /home/antonio/root/root-6.32.02-install/include/Rtypes.h \
  /home/antonio/root/root-6.32.02-install/include/strtok.h \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /home/antonio/root/root-6.32.02-install/include/strlcpy.h \
@@ -202,6 +200,17 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /usr/include/c++/11/bits/vector.tcc \
  /home/antonio/root/root-6.32.02-install/include/TIsAProxy.h \
  /home/antonio/root/root-6.32.02-install/include/TVirtualIsAProxy.h \
+ /home/antonio/root/root-6.32.02-install/include/TArrayD.h \
+ /home/antonio/root/root-6.32.02-install/include/TArray.h \
+ /home/antonio/root/root-6.32.02-install/include/Rtypes.h \
+ /home/antonio/root/root-6.32.02-install/include/TArrayI.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttFill.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttLine.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttMarker.h \
+ /home/antonio/root/root-6.32.02-install/include/TClass.h \
+ /home/antonio/root/root-6.32.02-install/include/TDictionary.h \
+ /home/antonio/root/root-6.32.02-install/include/TNamed.h \
+ /home/antonio/root/root-6.32.02-install/include/TObject.h \
  /home/antonio/root/root-6.32.02-install/include/TStorage.h \
  /home/antonio/root/root-6.32.02-install/include/TVersionCheck.h \
  /home/antonio/root/root-6.32.02-install/include/RVersion.h \
@@ -240,18 +249,43 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h /usr/include/c++/11/cstdarg \
+ /home/antonio/root/root-6.32.02-install/include/ESTLType.h \
+ /home/antonio/root/root-6.32.02-install/include/TObjArray.h \
+ /home/antonio/root/root-6.32.02-install/include/TSeqCollection.h \
+ /home/antonio/root/root-6.32.02-install/include/TCollection.h \
+ /home/antonio/root/root-6.32.02-install/include/TIterator.h \
+ /home/antonio/root/root-6.32.02-install/include/TVirtualRWMutex.h \
+ /home/antonio/root/root-6.32.02-install/include/TVirtualMutex.h \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/RRangeCast.hxx \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/RSpan.hxx \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/span.hxx \
+ /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/cassert /usr/include/assert.h \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/c++/11/unordered_set \
+ /usr/include/c++/11/bits/unordered_set.h \
+ /home/antonio/root/root-6.32.02-install/include/TDataType.h \
+ /home/antonio/root/root-6.32.02-install/include/TDirectory.h \
+ /home/antonio/root/root-6.32.02-install/include/TUUID.h \
+ /home/antonio/root/root-6.32.02-install/include/TList.h \
+ /home/antonio/root/root-6.32.02-install/include/TBuffer.h \
+ /home/antonio/root/root-6.32.02-install/include/Bytes.h \
+ /home/antonio/root/root-6.32.02-install/include/Byteswap.h \
+ /home/antonio/root/root-6.32.02-install/include/TVirtualTreePlayer.h \
+ /home/antonio/root/root-6.32.02-install/include/TBranch.h \
+ /home/antonio/root/root-6.32.02-install/include/TBranchCacheInfo.h \
+ /home/antonio/root/root-6.32.02-install/include/TBits.h \
+ /home/antonio/root/root-6.32.02-install/include/TRandom3.h \
+ /home/antonio/root/root-6.32.02-install/include/TRandom.h \
+ /home/antonio/root/root-6.32.02-install/include/Math/TRandomEngine.h \
  /home/antonio/root/root-6.32.02-install/include/TH1D.h \
  /home/antonio/root/root-6.32.02-install/include/TH1.h \
  /home/antonio/root/root-6.32.02-install/include/TAxis.h \
  /home/antonio/root/root-6.32.02-install/include/TAttAxis.h \
- /home/antonio/root/root-6.32.02-install/include/TArrayD.h \
- /home/antonio/root/root-6.32.02-install/include/TArray.h \
- /home/antonio/root/root-6.32.02-install/include/TAttLine.h \
- /home/antonio/root/root-6.32.02-install/include/TAttFill.h \
- /home/antonio/root/root-6.32.02-install/include/TAttMarker.h \
  /home/antonio/root/root-6.32.02-install/include/TArrayC.h \
  /home/antonio/root/root-6.32.02-install/include/TArrayS.h \
- /home/antonio/root/root-6.32.02-install/include/TArrayI.h \
  /home/antonio/root/root-6.32.02-install/include/TArrayL64.h \
  /home/antonio/root/root-6.32.02-install/include/TArrayF.h \
  /home/antonio/root/root-6.32.02-install/include/Foption.h \
@@ -261,5 +295,52 @@ CMakeFiles/generator.dir/generator.cpp.o: \
  /home/antonio/root/root-6.32.02-install/include/TFitResultPtr.h \
  /usr/include/c++/11/cfloat \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
+ /home/antonio/root/root-6.32.02-install/include/TCanvas.h \
+ /home/antonio/root/root-6.32.02-install/include/TPad.h \
+ /home/antonio/root/root-6.32.02-install/include/TVirtualPad.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttPad.h \
+ /home/antonio/root/root-6.32.02-install/include/TQObject.h \
+ /home/antonio/root/root-6.32.02-install/include/TVirtualQConnection.h \
+ /home/antonio/root/root-6.32.02-install/include/TInterpreter.h \
+ /home/antonio/root/root-6.32.02-install/include/TInterpreterValue.h \
+ /home/antonio/root/root-6.32.02-install/include/GuiTypes.h \
+ /usr/include/c++/11/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /home/antonio/root/root-6.32.02-install/include/Buttons.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttBBox2D.h \
+ /home/antonio/root/root-6.32.02-install/include/TAttCanvas.h \
+ /home/antonio/root/root-6.32.02-install/include/TF1.h \
+ /home/antonio/root/root-6.32.02-install/include/RConfigure.h \
+ /home/antonio/root/root-6.32.02-install/include/TFormula.h \
+ /home/antonio/root/root-6.32.02-install/include/TMath.h \
+ /home/antonio/root/root-6.32.02-install/include/TError.h \
+ /home/antonio/root/root-6.32.02-install/include/DllImport.h \
+ /home/antonio/root/root-6.32.02-install/include/Math/Types.h \
+ /home/antonio/root/root-6.32.02-install/include/RtypesCore.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc \
+ /home/antonio/root/root-6.32.02-install/include/TMethodCall.h \
+ /home/antonio/root/root-6.32.02-install/include/TF1AbsComposition.h \
+ /home/antonio/root/root-6.32.02-install/include/Math/Types.h \
+ /home/antonio/root/root-6.32.02-install/include/Math/ParamFunctor.h \
+ /home/antonio/root/root-6.32.02-install/include/TFile.h \
+ /home/antonio/root/root-6.32.02-install/include/TDirectoryFile.h \
+ /home/antonio/root/root-6.32.02-install/include/TDatime.h \
+ /home/antonio/root/root-6.32.02-install/include/TUrl.h \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/RConcurrentHashColl.hxx \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/TRWSpinLock.hxx \
+ /home/antonio/root/root-6.32.02-install/include/ROOT/TSpinMutex.hxx \
+ /usr/include/c++/11/condition_variable /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/mutex \
  /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/generator.h \
  /mnt/c/Users/Antonio/Desktop/MuonLifeTime-exp_base_petya/MC/constants.h
