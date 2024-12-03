@@ -39,3 +39,21 @@ TH1D* generator_exp(float tau, int integral, int seed, float min_edge_hist, floa
 	}
 	return exp_hist;
 }
+
+template <typename T>
+T lin_interpol(T x, T* x_arr, T* y_arr, size_t size){
+	if(x > x_arr[size-1] or x < x_arr[0]){
+		throw std::out_of_range("x out of interpolation range");
+	}
+	size_t init_guess = static_cast<size_t>(std::round((x-x_arr[0]) / (x_arr[size-1]-x_arr[0]) * size )) - 10;
+	for(size_t i = 0; i < size-1; i++){
+		if (x > x_arr[i] and x <= x_arr[i+1]){
+			return y_arr[i] + (x-x_arr[i]) * (y_arr[i+1]-y_arr[i]) / (x_arr[i+1]-x_arr[i]);
+		}
+	}
+}
+
+double generator_theta(TRandom3 *rg, double *theta_arr, double *cdf_arr, size_t arr_size){
+	double cdf_value = rg->Uniform();
+	return lin_interpol(cdf_value, cdf_arr, theta_arr, arr_size);
+}
