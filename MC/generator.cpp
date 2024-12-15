@@ -8,7 +8,7 @@
 #include "generator.h"
 //#include "constants.h"
 
-TH1D* generator(int B, int seed, float min_edge_hist, float max_edge_hist, int used_ch){
+TH1D* generator(double B, int seed, float min_edge_hist, float max_edge_hist, int used_ch){
 	TRandom3 *rg = new TRandom3(seed);//static_cast<int>(std::time(0)));
 	float channel;
 	// Bin 0 - overflow; Bin used_ch+1 - overflow; Bins 1 and used_ch are bounds
